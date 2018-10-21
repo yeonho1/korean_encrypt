@@ -6,15 +6,20 @@ import core
 
 letters = core.getLetters(reverse=False)
 def encrypt(toEncrypt):
-    if hgtk.checker.is_hangul(toEncrypt.replace(" ", "").replace(".", "").replace(",","")):
+    checkingStr = toEncrypt
+    otherLetters = core.getOtherLetters()
+    
+    for x in otherLetters.keys():
+        checkingStr = checkingStr.replace(x, "")
+    if hgtk.checker.is_hangul(checkingStr):
         sepText = list(hgtk.text.decompose(toEncrypt))
         enchr = ''
         for x in sepText:
             if ord(x) != 0x1d25:
-                if x == ' ':
+                if x in otherLetters:
+                    enchr += otherLetters[x] + ','
+                elif x == ' ':
                     enchr += ' ,'
-                elif x == ',':
-                    enchr += '11c,'
                 else:
                     enchr += letters[x] + '+'
             else:
