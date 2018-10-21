@@ -42,7 +42,8 @@ def getLetters(reverse=False):
            u'ㅞ': '8c',
            u'ㅟ': '9c',
            u'ㅢ': '10c',
-           u'.' : '.'
+           u'.' : '.',
+           u',' : '11c'
         }
     if reverse:
         try:
