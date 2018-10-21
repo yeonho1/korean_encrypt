@@ -13,9 +13,13 @@ def decrypt(toDecrypt):
     decrypted = ''
     letterSplit = toDecrypt.split(',')
     for letter in letterSplit:
-        for seq in letter.split('+'):
-            decrypted += letters[seq.lstrip().rstrip()]
+        if letter == ' ':
+            decrypted += ' '
+        else:
+            for seq in letter.split('+'):
+                decrypted += letters[seq.lstrip().rstrip()]
         decrypted += sep
+    print(decrypted)
     return hgtk.text.compose(decrypted)
 
 
